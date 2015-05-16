@@ -19,5 +19,8 @@
     "morgan": "^1.5.2",
     "nconf": "^0.7.1",
     "path": "^0.11.14"
+  },
+  "devDependencies": {
+    "supertest": "^1.0.1"
   }
 }
