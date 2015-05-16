@@ -1,0 +1,23 @@
+{
+  "name": "unforget-server",
+  "version": "0.0.1",
+  "description": "An Anki-compatible server for Unforget",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --harmony ./index.js"
+  },
+  "keywords": [
+    "unforget",
+    "anki",
+    "flashcards",
+    "server"
+  ],
+  "author": "Brian Birtles",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.12.3",
+    "morgan": "^1.5.2",
+    "nconf": "^0.7.1",
+    "path": "^0.11.14"
+  }
+}
