@@ -1,0 +1,8 @@
+{
+  "connection": {
+    "port": 8443,
+    "key": "test/cert/test.key",
+    "cert": "test/cert/test.crt",
+    "passphrase": "passphrase"
+  }
+}
