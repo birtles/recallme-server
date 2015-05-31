@@ -46,7 +46,10 @@ In my case, I had to do:
 (See the [StackOverflow
 question](http://stackoverflow.com/questions/14459078/unable-to-load-config-info-from-usr-local-ssl-openssl-cnf))
 
-You'll get asked a bunch of questions 
+You'll get asked a bunch of questions. The most important one is the Common Name
+(CN) one. If you're running this locally it will be something like 'localhost'.
+If this doesn't match the actual address used to access the server you'll get
+errors about the mismatch.
 
 Then you need to self-sign the key:
 
