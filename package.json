@@ -1,7 +1,7 @@
 {
-  "name": "unforget-server",
+  "name": "recallme-server",
   "version": "0.0.1",
-  "description": "An Anki-compatible server for Unforget",
+  "description": "An Anki-compatible server for Recall Me",
   "main": "index.js",
   "scripts": {
     "start": "node --harmony ./index.js"
