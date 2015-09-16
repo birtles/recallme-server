@@ -1,11 +1,12 @@
 'use strict';
 
-const request = require('supertest')
-    , fs = require('fs')
-    , nconf = require('nconf')
-    , path = require('path')
-    , common = require('./common.js')
-    , App = require('../app.js');
+const request = require('supertest'),
+      fs = require('fs'),
+      nconf = require('nconf'),
+      path = require('path'),
+      App = require('../app.js');
+
+require('./common.js');
 
 // Test configuation
 // -------------------------
@@ -48,7 +49,7 @@ describe('GET /sync/hostKey', () => {
       .get('/sync/hostKey')
       .expect('Content-Type', /json/)
       .expect(200)
-      .end(function(err, res){
+      .end(function(err){
         if (err) throw err;
         done();
       });

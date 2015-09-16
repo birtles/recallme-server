@@ -3,7 +3,6 @@
 const express = require('express'),
       fs = require('fs'),
       morgan = require('morgan'),
-      path = require('path'),
       https = require('https');
 
 // Create a new server with the given configuration.

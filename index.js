@@ -20,4 +20,4 @@ nconf.defaults({
   'connection': { 'port': '443' }
 });
 
-var server = new Server(nconf);
+new Server(nconf);

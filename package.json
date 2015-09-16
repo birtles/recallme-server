@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./index.js",
-    "check": "jsonlint -q test/config.json",
+    "check": "jsonlint -q test/config.json && eslint -c eslint.conf **/*.js",
     "test": "npm run check && mocha test/auth.js"
   },
   "keywords": [
@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "chai": "^3.2.0",
+    "eslint": "^1.4.3",
     "jsonlint": "^1.6.2",
     "mocha": "^2.3.2",
     "supertest": "^1.0.1"
