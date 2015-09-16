@@ -5,14 +5,23 @@ const request = require('supertest')
     , nconf = require('nconf')
     , path = require('path');
 
-// FIXME: Allow this to be overridden from command-line?
+// Get test configuation
+// -------------------------
+
 nconf.file(path.join(__dirname, 'config.json'));
 
-// FIXME: Get connection details from command-line / config
+let host = 'https://localhost';
+if (nconf.get('connection:port')) {
+  host += `:${nconf.get('connection:port')}`;
+}
+let ca = fs.readFileSync(nconf.get('connection:cert'));
+
+// Test
+// -------------------------
+
 // We need to use |request.agent| instead of just |request| here as
 // otherwise supertest doesn't pass along the options argument.
-const agent = request.agent('https://localhost:8443',
-                            { ca: fs.readFileSync('test/cert/test.crt') });
+const agent = request.agent(host, { ca: ca });
 
 // If you're seeing random errors about the 'res' object being undefined, it's
 // probably an SSL error being masked by supertest's woeful error handling.
