@@ -1,14 +1,8 @@
 'use strict';
 
-const express = require('express'),
-      fs = require('fs'),
-      morgan = require('morgan'),
-      nconf = require('nconf'),
+const nconf = require('nconf'),
       path = require('path'),
-      https = require('https');
-
-// Load configuration
-// -------------------------
+      Server = require('./app.js');
 
 nconf.env().argv();
 
@@ -26,28 +20,4 @@ nconf.defaults({
   'connection': { 'port': '443' }
 });
 
-// Setup server
-// -------------------------
-
-const app = express();
-
-app.use(morgan('dev'));
-
-// XXX This should return 403 for Auth-failed
-app.get('/sync/hostKey', function (req, res) {
-  res.status(200).json({ 'key': 'test' });
-});
-
-let sslOptions = {
-  key: fs.readFileSync(nconf.get('connection:key')),
-  cert: fs.readFileSync(nconf.get('connection:cert')),
-  passphrase: nconf.get('connection:passphrase')
-};
-
-const server = https.createServer(sslOptions, app)
-                    .listen(nconf.get('connection:port'), function() {
-  let host = server.address().address;
-  let port = server.address().port;
-
-  console.log('Server listening at http://%s:%s', host, port);
-});
+var server = new Server(nconf);

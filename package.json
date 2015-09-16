@@ -4,7 +4,8 @@
   "description": "An Anki-compatible server for Recall Me",
   "main": "index.js",
   "scripts": {
-    "start": "node ./index.js"
+    "start": "node ./index.js",
+    "test": "mocha test/auth.js"
   },
   "keywords": [
     "unforget",

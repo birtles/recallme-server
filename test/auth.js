@@ -3,15 +3,17 @@
 const request = require('supertest')
     , fs = require('fs')
     , nconf = require('nconf')
-    , path = require('path');
+    , path = require('path')
+    , App = require('../app.js');
 
 // Test configuation
 // -------------------------
 
-let agent;
+let app, agent;
 
 before(() => {
   nconf.file(path.join(__dirname, 'config.json'));
+  app = new App(nconf);
 
   let host = 'https://localhost';
   if (nconf.get('connection:port')) {
@@ -22,6 +24,10 @@ before(() => {
   // We need to use |request.agent| instead of just |request| here as
   // otherwise supertest doesn't pass along the options argument.
   agent = request.agent(host, { ca: ca });
+});
+
+after(() => {
+  app.close();
 });
 
 // Tests
