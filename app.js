@@ -32,7 +32,7 @@ module.exports = function(conf) {
     let host = server.address().address;
     let port = server.address().port;
 
-    console.log('Server listening at http://%s:%s', host, port);
+    console.log('Server listening at https://%s:%s', host, port);
   });
 
   return server;
