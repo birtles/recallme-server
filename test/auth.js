@@ -4,6 +4,7 @@ const request = require('supertest')
     , fs = require('fs')
     , nconf = require('nconf')
     , path = require('path')
+    , common = require('./common.js')
     , App = require('../app.js');
 
 // Test configuation
