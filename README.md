@@ -16,7 +16,7 @@ which, really, is much too generic. Probably should fix that.
 
 Alternatively, just do:
 
-> npm start -- --config <path-to-config-file>
+> npm start -- --config &lt;path-to-config-file>
 
 Running tests
 =============
