@@ -5,23 +5,27 @@ const request = require('supertest')
     , nconf = require('nconf')
     , path = require('path');
 
-// Get test configuation
+// Test configuation
 // -------------------------
 
-nconf.file(path.join(__dirname, 'config.json'));
+let agent;
 
-let host = 'https://localhost';
-if (nconf.get('connection:port')) {
-  host += `:${nconf.get('connection:port')}`;
-}
-let ca = fs.readFileSync(nconf.get('connection:cert'));
+before(() => {
+  nconf.file(path.join(__dirname, 'config.json'));
 
-// Test
+  let host = 'https://localhost';
+  if (nconf.get('connection:port')) {
+    host += `:${nconf.get('connection:port')}`;
+  }
+  let ca = fs.readFileSync(nconf.get('connection:cert'));
+
+  // We need to use |request.agent| instead of just |request| here as
+  // otherwise supertest doesn't pass along the options argument.
+  agent = request.agent(host, { ca: ca });
+});
+
+// Tests
 // -------------------------
-
-// We need to use |request.agent| instead of just |request| here as
-// otherwise supertest doesn't pass along the options argument.
-const agent = request.agent(host, { ca: ca });
 
 // If you're seeing random errors about the 'res' object being undefined, it's
 // probably an SSL error being masked by supertest's woeful error handling.
@@ -31,9 +35,15 @@ const agent = request.agent(host, { ca: ca });
 //
 //   process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
-agent.get('/sync/hostKey')
-   .expect('Content-Type', /json/)
-   .expect(200)
-   .end(function(err, res){
-     if (err) throw err;
-   });
+describe('GET /sync/hostKey', () => {
+  it('responds with json', done => {
+    agent
+      .get('/sync/hostKey')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end(function(err, res){
+        if (err) throw err;
+        done();
+      });
+  });
+});
