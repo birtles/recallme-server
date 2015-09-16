@@ -101,3 +101,8 @@ Here are the instructions for configuring different devices and programs:
 * TODO: Instructions for FirefoxOS
 * TODO: Instructions for Anki
 * TODO: Instructions for Android/IE/Chrome etc.
+
+For curl, just pass `--cacert` like so:
+
+> npm start -- --config test/config.json
+> curl https://localhost:8443/sync/hostKey --cacert test/cert/test.crt
