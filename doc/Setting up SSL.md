@@ -1,7 +1,7 @@
 Setting up SSL/TLS
 ==================
 
-Unforget server only operates over SSL/TLS. This can be a bit of a pain to setup
+Recallme server only operates over SSL/TLS. This can be a bit of a pain to setup
 if you don't already have the necessary certificates and keys lying around.
 
 NOTE: I know absolutely nothing about security. Really. This could all be really
@@ -64,10 +64,10 @@ a public source repository so there's absolutely no security provided by using
 them on a real installation.
 
 
-2. Telling unforget server about the certificates
+2. Telling recallme server about the certificates
 -------------------------------------------------
 
-Once you've got your key and crt file you need to tell unforget server about
+Once you've got your key and crt file you need to tell recallme server about
 them. You can make up a config.json file with the details as follows.
 
     {
